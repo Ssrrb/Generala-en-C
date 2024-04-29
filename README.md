@@ -1,7 +1,5 @@
-# yahtzee
-A small C project to play a 2-player game of Yahtzee in the console.
-
-This project was created for an introductory to C-Programming course at Washington State University. The game features ASCII dice
-to dynamically display dice for each roll. The program keeps track of used combos to forbids the user from using them more than once
-and checks the roll to ensure that the player achieved the combo necessary and gives points accordingly.
-
+# Generala
+Un proyecto de programación en C de pequeña escala diseñado para facilitar un juego de Generala para dos jugadores directamente en un entorno de consola. 
+Este proyecto fue desarrollado como parte de un curso introductorio de programación en C. Cuenta con una representación dinámica de los dados mediante ASCII, mejorando la experiencia visual con cada lanzamiento. 
+El programa está diseñado para monitorear meticulosamente qué combinaciones han sido utilizadas previamente, evitando su repetición. Automáticamente verifica cada tirada para confirmar 
+si el jugador ha logrado la combinación requerida y asigna puntos basados en estos logros.
