@@ -85,7 +85,7 @@ void main_gameplay (void)
  * Function: gameplay_menu (void)						     *
  * Date Created: 10/23/15                                    *
  * Date Last Modified: 10/23/15                              *
- * Description: Displays the main menu				         *
+ * Description: Displays the main 				         *
  * Input parameters: none									 *
  * Returns: none									         *
  * Preconditions: Start of program                           *
