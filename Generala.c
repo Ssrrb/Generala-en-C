@@ -311,87 +311,82 @@ void relanzar(int dado[5], int tamano, int combo_c[13], int jugador, int ronda)
 }
 
 
- /************************************************************
- * Función: elegir_combo (int dado[5], int tamano,			 *
- *			 int combo_c[13], int puntuaciones[13],				 *
- *			 int jugador, int ronda)							 *
- * Fecha Created: 10/23/15                                    *
- * Fecha Last Modified: 10/23/15                              *
- * Descripción: Asks user to choose a combo, checks if used	 *
- * Parámetros de entrada: dado array, array tamano, combo array	     *
- *					 jugador, and ronda						 *
- * Devuelve: ninguno									         *
- * Precondiciones: Start of program                           *
- * Postcondiciones: updates combo array					     *
- *************************************************************/
-void elegir_combo (int dado[5], int tamano, int combo_c[13], int puntuaciones[13], int jugador, int ronda)
+/***************************************************************
+ * Función: elegir_combo                                      *
+ * Fecha de creación: 10/23/15                                *
+ * Fecha de última modificación: 10/23/15                     *
+ * Descripción: Solicita al usuario que elija una combinación *
+ *              y verifica si ya ha sido utilizada.           *
+ * Parámetros de entrada: array de dados, tamaño del array,   *
+ *                        array de combinaciones, array de    *
+ *                        puntuaciones, jugador y ronda.       *
+ * Devuelve: ninguno                                          *
+ * Precondiciones: Inicio del programa                        *
+ * Postcondiciones: actualiza el array de combinaciones       *
+ ***************************************************************/
+void elegir_combo(int dado[5], int tamano, int combo_c[13], int puntuaciones[13], int jugador, int ronda)
 {
-	int selection = 0, index = 0, is_combo_valid = 0;
+    int seleccion = 0, es_combo_valido = 0;
 
+    system("cls");
+    printf("--- JUGADOR %d - RONDA %d ---\n\n", jugador, ronda);
+    imprimir_dado(dado, tamano, combo_c);
+    
+    // Solicita al usuario que elija una combinación y repite si la combinación ya ha sido usada
+    do
+    {
+        printf("Ingrese la combinación que desea utilizar (1-13): ");
+        scanf("%d", &seleccion);
 
-	system("cls");
-	printf("************************************************** PLAYER %d ********************************************************\n", jugador);
-	printf("************************************************** ROUND %d ********************************************************\n\n", ronda);
-	imprimir_dado(dado, 5, combo_c);
-	
-	// Asks user for combination, repeat if combo has been used before
-	do
-	{
-		printf("Enter the combination you would like to use: ");
-		scanf("%d", &selection);
-
-		switch(selection)
-		{
-		case 1:
-			is_combo_valid = ones(dado,combo_c,puntuaciones);
-			break;
-		case 2:
-			is_combo_valid = twos(dado,combo_c,puntuaciones);
-			break;
-		case 3:
-			is_combo_valid = threes(dado,combo_c,puntuaciones);
-			break;
-		case 4:
-			is_combo_valid = fours(dado,combo_c,puntuaciones);
-			break;
-		case 5:
-			is_combo_valid = fives(dado,combo_c,puntuaciones);
-			break;
-		case 6:
-			is_combo_valid = sixes(dado,combo_c,puntuaciones);
-			break;
-		case 7:
-			is_combo_valid = three_of_a_kind(dado,combo_c,puntuaciones);
-			break;
-		case 8:
-			is_combo_valid = four_of_a_kind(dado,combo_c, puntuaciones);
-			break;
-		case 9:
-			is_combo_valid = full_house(dado,combo_c, puntuaciones);
-			break;
-		case 10:
-			is_combo_valid = sm_straight(dado, combo_c, puntuaciones);
-			break;
-		case 11:
-			is_combo_valid = lg_straight(dado, combo_c, puntuaciones);
-			break;
-		case 12:
-			is_combo_valid = yahtzee(dado, combo_c, puntuaciones);
-			break;
-		case 13:
-			is_combo_valid = chance(dado, combo_c, puntuaciones);
-			break;
-		default:
-			printf("Please enter a valid selection.\n\n");
-			break;
-		}
-
-	}
-	while(!is_combo_valid);
-
-		
-
+        switch (seleccion)
+        {
+            case 1:
+                es_combo_valido = ones(dado, combo_c, puntuaciones);
+                break;
+            case 2:
+                es_combo_valido = twos(dado, combo_c, puntuaciones);
+                break;
+            case 3:
+                es_combo_valido = threes(dado, combo_c, puntuaciones);
+                break;
+            case 4:
+                es_combo_valido = fours(dado, combo_c, puntuaciones);
+                break;
+            case 5:
+                es_combo_valido = fives(dado, combo_c, puntuaciones);
+                break;
+            case 6:
+                es_combo_valido = sixes(dado, combo_c, puntuaciones);
+                break;
+            case 7:
+                es_combo_valido = three_of_a_kind(dado, combo_c, puntuaciones);
+                break;
+            case 8:
+                es_combo_valido = four_of_a_kind(dado, combo_c, puntuaciones);
+                break;
+            case 9:
+                es_combo_valido = full_house(dado, combo_c, puntuaciones);
+                break;
+            case 10:
+                es_combo_valido = sm_straight(dado, combo_c, puntuaciones);
+                break;
+            case 11:
+                es_combo_valido = lg_straight(dado, combo_c, puntuaciones);
+                break;
+            case 12:
+                es_combo_valido = yahtzee(dado, combo_c, puntuaciones);
+                break;
+            case 13:
+                es_combo_valido = chance(dado, combo_c, puntuaciones);
+                break;
+            default:
+                printf("Por favor, ingrese una selección válida.\n\n");
+                es_combo_valido = 0;
+                break;
+        }
+    } while (!es_combo_valido);
 }
+
 
  /************************************************************
  * Función: print_combos (int combo_c[13])					 *
