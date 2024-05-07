@@ -2,15 +2,15 @@
  * Programado por: Sebastian Rojas y Mateo Rios                          *
  * Clase: TAI                                                            *
  * Tarea: Juego de generala                                              *
- * Fecha: 10/05/24                                                       *
+ * Fecha: 22/04/24                                                       *
  ************************************************************************/
 
 #include "Generala.h"
 
 /************************************************************
  * Función: juego_principal                                 *
- * Fecha de creación: 10/05/24                              *
- * Fecha de última modificación: 10/05/24                   *
+ * Fecha de creación: 22/05/24                              *
+ * Fecha de última modificación: 6/05/24                   *
  * Descripción: Ejecuta el juego principal de Generala.     *
  * Parámetros de entrada: ninguno                           *
  * Retorna: ninguno                                         *
@@ -70,8 +70,8 @@ void juego_principal(void)
 
 /***************************************************************
  * Función: menu_juego                                         *
- * Fecha de creación: 10/23/15                                 *
- * Fecha de última modificación: 10/23/15                      *
+ * Fecha de creación: 26/04/24                                 *
+ * Fecha de última modificación: 06/05/24                      *
  * Descripción: Muestra el menú principal del juego Generala.  *
  * Parámetros de entrada: ninguno                              *
  * Retorna: entero indicando si se juega o no (1 o 0)          *
@@ -119,8 +119,8 @@ int menu_juego(void)
 
 /***************************************************************
  * Función: tirar_dado                                         *
- * Fecha de creación: 10/23/15                                 *
- * Fecha de última modificación: 10/23/15                      *
+ * Fecha de creación: 26/04/24                                 *
+ * Fecha de última modificación: 1/05/24                      *
  * Descripción: Lanza los dados de forma aleatoria.            *
  * Parámetros de entrada: Array de dados y tamaño del array.   *
  * Retorna: ninguno                                            *
@@ -143,8 +143,8 @@ void tirar_dado(int dado[5], int tamano)
 
 /***************************************************************
  * Función: imprimir_dado                                      *
- * Fecha de creación: 10/23/15                                 *
- * Fecha de última modificación: 10/23/15                      *
+ * Fecha de creación: 27/04/24                                 *
+ * Fecha de última modificación: 28/04/24                      *
  * Descripción: Imprime los dados en formato ASCII.            *
  * Parámetros de entrada: array de dados, tamaño del array y   *
  * array de combinaciones de combos.                           *
@@ -255,8 +255,8 @@ void imprimir_dado(int dado[5], int tamano, int combos_c[13])
 
 /***************************************************************
  * Función: relanzar                                           *
- * Fecha de creación: 10/23/15                                 *
- * Fecha de última modificación: 10/23/15                      *
+ * Fecha de creación: 26/04/24                                 *
+ * Fecha de última modificación: 2/05/24                      *
  * Descripción: Pide al usuario si desea y cuántos dados        *
  *              relanzar, luego actualiza el array de dados.    *
  * Parámetros de entrada: array de dados, tamaño del array,     *
@@ -305,8 +305,8 @@ void relanzar(int dado[5], int tamano, int combo_c[13], int jugador, int ronda)
 
 /***************************************************************
  * Función: elegir_combo                                      *
- * Fecha de creación: 10/23/15                                *
- * Fecha de última modificación: 10/23/15                     *
+ * Fecha de creación: 27/04/24                                *
+ * Fecha de última modificación: 1/05/24                     *
  * Descripción: Solicita al usuario que elija una combinación *
  *              y verifica si ya ha sido utilizada.           *
  * Parámetros de entrada: array de dados, tamaño del array,   *
@@ -382,8 +382,8 @@ void elegir_combo(int dado[5], int tamano, int combo_c[13], int puntuaciones[13]
 
  /************************************************************
  * Función: imprimir_combos                                  *
- * Fecha de creación: 10/23/15                               *
- * Fecha de última modificación: 10/23/15                    *
+ * Fecha de creación: 27/04/24                               *
+ * Fecha de última modificación: 2/05/24                    *
  * Descripción: Imprime las opciones de combos, con X si ya  *
  *              se han utilizado.                            *
  * Parámetros de entrada: array de combos                    *
@@ -448,8 +448,8 @@ void imprimir_combos(int combo_c[13])
 
  /************************************************************
  * Función: imprimir_puntuacion                             *
- * Fecha de creación: 10/23/15                               *
- * Fecha de última modificación: 10/23/15                    *
+ * Fecha de creación: 29/04/24                               *
+ * Fecha de última modificación: 30/04/24                    *
  * Descripción: Imprime la puntuación del jugador            *
  * Parámetros de entrada: array de puntuaciones, jugador     *
  * Devuelve: ninguno                                         *
@@ -995,8 +995,8 @@ int azar(int dado[5], int combo_c[13], int puntos[13])
 
  /************************************************************
  * Función: finalizar_juego (int p1_puntos[13], int p2_puntos[13]) *
- * Fecha de creación: 10/23/15                                *
- * Fecha de última modificación: 10/23/15                     *
+ * Fecha de creación: 3/05/24                                *
+ * Fecha de última modificación: 6/05/24                     *
  * Descripción: Añade 35 puntos extra si es aplicable, muestra el ganador *
  * Parámetros de entrada: arrays de puntos de los jugadores 1 y 2 *
  * Devuelve:                                                   *
