@@ -497,8 +497,8 @@ int unos(int dado[5], int combo_c[13], int puntos[13])
 
  /************************************************************
  * Función: doses (int dado[5], int combo_c[13], int puntos[13])
- * Fecha de creación: 10/23/15                                *
- * Fecha de última modificación: 10/23/15                     *
+ * Fecha de creación: 27/04/24                                *
+ * Fecha de última modificación: 29/04/24                     *
  * Descripción: Suma los doses y lo añade al array de puntos  *
  * Parámetros de entrada: array de dados, array de combos,    *
  *                        array de puntos                     *
@@ -526,8 +526,8 @@ int doses(int dado[5], int combo_c[13], int puntos[13])
 
  /************************************************************
  * Función: treses (int dado[5], int combo_c[13], int puntos[13])
- * Fecha de creación: 10/23/15                                *
- * Fecha de última modificación: 10/23/15                     *
+ * Fecha de creación: 29/04/24                                *
+ * Fecha de última modificación: 1/05/24                     *
  * Descripción: Suma los treses y lo añade al array de puntos *
  * Parámetros de entrada: array de dados, array de combos,    *
  *                        array de puntos                     *
@@ -555,8 +555,8 @@ int treses(int dado[5], int combo_c[13], int puntos[13])
 
  /************************************************************
  * Función: cuatros (int dado[5], int combo_c[13], int puntos[13])
- * Fecha de creación: 10/23/15                                *
- * Fecha de última modificación: 10/23/15                     *
+ * Fecha de creación: 1/05/24                                *
+ * Fecha de última modificación: 1/05/24                     *
  * Descripción: Suma los cuatros y lo añade al array de puntos*
  * Parámetros de entrada: array de dados, array de combos,    *
  *                        array de puntos                     *
@@ -584,8 +584,8 @@ int cuatros(int dado[5], int combo_c[13], int puntos[13])
 
  /************************************************************
  * Función: cincos (int dado[5], int combo_c[13], int puntos[13])
- * Fecha de creación: 10/23/15                                *
- * Fecha de última modificación: 10/23/15                     *
+ * Fecha de creación: 1/05/24                                *
+ * Fecha de última modificación: 1/05/24                     *
  * Descripción: Suma los cincos y lo añade al array de puntos *
  * Parámetros de entrada: array de dados, array de combos,    *
  *                        array de puntos                     *
@@ -613,8 +613,8 @@ int cincos(int dado[5], int combo_c[13], int puntos[13])
 
  /************************************************************
  * Función: seises (int dado[5], int combo_c[13], int puntos[13])
- * Fecha de creación: 10/23/15                                *
- * Fecha de última modificación: 10/23/15                     *
+ * Fecha de creación: 1/05/24                                *
+ * Fecha de última modificación: 1/05/24                     *
  * Descripción: Suma los seises y lo añade al array de puntos *
  * Parámetros de entrada: array de dados, array de combos,    *
  *                        array de puntos                     *
@@ -643,8 +643,8 @@ int seises(int dado[5], int combo_c[13], int puntos[13])
  /************************************************************
  * Función: trio (int dado[5],					             *
  *		 	 int combo_c[13], int puntos[13])				 *
- * Fecha de creación: 10/23/15                                *
- * Fecha de última modificación: 10/23/15                     *
+ * Fecha de creación: 3/05/24                                *
+ * Fecha de última modificación: 3/05/24                     *
  * Descripción: Verifica si hay un trío y luego suma los dados*
  * Parámetros de entrada: array de dados, array de combos,    *
  *                        array de puntos                     *
@@ -691,8 +691,8 @@ int trio(int dado[5], int combo_c[13], int puntos[13])
  /************************************************************
  * Función: poker (int dado[5],					             *
  *		 	 int combo_c[13], int puntos[13])				 *
- * Fecha de creación: 10/23/15                                *
- * Fecha de última modificación: 10/23/15                     *
+ * Fecha de creación: 3/05/24                                *
+ * Fecha de última modificación: 3/05/24                     *
  * Descripción: Verifica si hay un poker y luego suma los dados*
  * Parámetros de entrada: array de dados, array de combos,    *
  *                        array de puntos                     *
@@ -739,8 +739,8 @@ int poker(int dado[5], int combo_c[13], int puntos[13])
  /************************************************************
  * Función: full	 (int dado[5],			    	         *
  *		 	 int combo_c[13], int puntos[13])				 *
- * Fecha de creación: 10/23/15                                *
- * Fecha de última modificación: 10/23/15                     *
+ * Fecha de creación: 4/05/24                                *
+ * Fecha de última modificación: 4/05/24                     *
  * Descripción: Verifica si hay un full y luego otorga 25 puntos *
  * Parámetros de entrada: array de dados, array de combos,    *
  *                        array de puntos                     *
@@ -818,8 +818,8 @@ int full(int dado[5], int combo_c[13], int puntos[13])
  /************************************************************
  * Función: escalera_corta	 (int dado[5],			    	 *
  *		 	 int combo_c[13], int puntos[13])				 *
- * Fecha de creación: 10/23/15                                *
- * Fecha de última modificación: 10/23/15                     *
+ * Fecha de creación: 4/05/24                                *
+ * Fecha de última modificación: 5/05/24                     *
  * Descripción: Verifica si hay una escalera corta y otorga 30 puntos *
  * Parámetros de entrada: array de dados, array de combos,    *
  *                        array de puntos                     *
@@ -870,8 +870,8 @@ int escalera_corta(int dado[5], int combo_c[13], int puntos[13])
  /************************************************************
  * Función: escalera_larga	 (int dado[5],			    	 *
  *		 	 int combo_c[13], int puntos[13])				 *
- * Fecha de creación: 10/23/15                                *
- * Fecha de última modificación: 10/23/15                     *
+ * Fecha de creación: 5/05/24                                *
+ * Fecha de última modificación: 5/05/24                     *
  * Descripción: Verifica si hay una escalera larga y otorga 40 puntos *
  * Parámetros de entrada: array de dados, array de combos,    *
  *                        array de puntos                     *
@@ -921,8 +921,8 @@ int escalera_larga(int dado[5], int combo_c[13], int puntos[13])
  /************************************************************
  * Función: generala	 (int dado[5],			    	     *
  *		 	 int combo_c[13], int puntos[13])				 *
- * Fecha de creación: 10/23/15                                *
- * Fecha de última modificación: 10/23/15                     *
+ * Fecha de creación: 5/05/24                                *
+ * Fecha de última modificación: 5/05/24                     *
  * Descripción: Verifica si hay una generala y otorga 50 puntos*
  * Parámetros de entrada: array de dados, array de combos,    *
  *                        array de puntos                     *
@@ -968,7 +968,7 @@ int generala(int dado[5], int combo_c[13], int puntos[13])
  /************************************************************
  * Función: azar	 (int dado[5],			    	         *
  *		 	 int combo_c[13], int puntos[13])				 *
- * Fecha de creación: 10/23/15                                *
+ * Fecha de creación: 5/05/24                                *
  * Fecha de última modificación: 10/23/15                     *
  * Descripción: Suma todos los dados como puntos              *
  * Parámetros de entrada: array de dados, array de combos,    *
@@ -995,7 +995,7 @@ int azar(int dado[5], int combo_c[13], int puntos[13])
 
  /************************************************************
  * Función: finalizar_juego (int p1_puntos[13], int p2_puntos[13]) *
- * Fecha de creación: 3/05/24                                *
+ * Fecha de creación: 6/05/24                                *
  * Fecha de última modificación: 6/05/24                     *
  * Descripción: Añade 35 puntos extra si es aplicable, muestra el ganador *
  * Parámetros de entrada: arrays de puntos de los jugadores 1 y 2 *
