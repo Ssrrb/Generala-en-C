@@ -1,5 +1,5 @@
-#ifndef PA4_H
-#define PA4_H
+#ifndef GENERALA_H
+#define GENERALA_H
 
 #define _CRT_SECURE_NO_WARNINGS
 
@@ -7,42 +7,70 @@
 #include <stdlib.h>
 #include <time.h>
 
-void main_gameplay (void);
-int gameplay_menu (void);
-void roll_dice (int dice_values[5], int num_items);
-void print_die (int die[5], int size, int c_combos[13]);
-void reroll (int die[5], int size, int c_combo[13], int player, int round);
-void choose_combo (int die[5], int size, int c_combo[13], int scores[13], int player, int round);
+// Inicia y ejecuta el juego principal de Generala.
+void juego_principal(void);
 
-void print_score (int scores[13], int player);
-void print_combos (int c_combos[13]);
+// Muestra y gestiona el menú principal del juego.
+int menu_juego(void);
 
-int ones (int die[5], int c_combo[13], int points[13]);
-int twos (int die[5], int c_combo[13], int points[13]);
-int threes (int die[5], int c_combo[13], int points[13]);
-int fours (int die[5], int c_combo[13], int points[13]);
-int fives (int die[5], int c_combo[13], int points[13]);
-int sixes (int die[5], int c_combo[13], int points[13]);
+// Lanza un número especificado de dados de forma aleatoria.
+void tirar_dado(int dado[5], int tamano);
 
-int three_of_a_kind (int die[5], int c_combo[13], int points[13]);
-int four_of_a_kind (int die[5], int c_combo[13], int points[13]);
-int full_house (int die[5], int c_combo[13], int points[13]);
-int lg_straight (int die[5], int c_combo[13], int points [13]);
+// Imprime el estado actual de los dados en formato ASCII.
+void imprimir_dado(int dado[5], int tamano, int combos_c[13]);
 
-int sm_straight(int die[5], int c_combo[13], int points[13]);
-int yahtzee(int die[5], int c_combo[13], int points[13]);
-int chance(int die[5], int c_combo[13], int points[13]);
+// Permite al jugador decidir qué dados quiere volver a lanzar.
+void relanzar(int dado[5], int tamano, int combo_c[13], int jugador, int ronda);
 
+// Permite al jugador seleccionar una combinación de puntuación basada en el resultado de los dados.
+void elegir_combo(int dado[5], int tamano, int combo_c[13], int puntuaciones[13], int jugador, int ronda);
 
-void end_game (int p1_points[13], int p2_points[13]);
+// Imprime la puntuación actual del jugador.
+void imprimir_puntuacion(int puntuaciones[13], int jugador);
 
+// Muestra las combinaciones disponibles y marca las que ya se han utilizado.
+void imprimir_combos(int combo_c[13]);
 
+// Calcula y actualiza la puntuación basada en la cantidad de unos.
+int unos(int dado[5], int combo_c[13], int puntos[13]);
 
+// Calcula y actualiza la puntuación basada en la cantidad de doses.
+int doses(int dado[5], int combo_c[13], int puntos[13]);
 
+// Calcula y actualiza la puntuación basada en la cantidad de treses.
+int treses(int dado[5], int combo_c[13], int puntos[13]);
 
+// Calcula y actualiza la puntuación basada en la cantidad de cuatros.
+int cuatros(int dado[5], int combo_c[13], int puntos[13]);
 
+// Calcula y actualiza la puntuación basada en la cantidad de cincos.
+int cincos(int dado[5], int combo_c[13], int puntos[13]);
 
+// Calcula y actualiza la puntuación basada en la cantidad de seises.
+int seises(int dado[5], int combo_c[13], int puntos[13]);
 
+// Evalúa y puntúa un trío de dados iguales.
+int trio(int dado[5], int combo_c[13], int puntos[13]);
 
+// Evalúa y puntúa cuatro dados iguales.
+int poker(int dado[5], int combo_c[13], int puntos[13]);
 
-#endif // !PA4_H
+// Evalúa y puntúa un full house (un trío y un par).
+int full(int dado[5], int combo_c[13], int puntos[13]);
+
+// Evalúa y puntúa una escalera corta (cuatro en secuencia).
+int escalera_corta(int dado[5], int combo_c[13], int puntos[13]);
+
+// Evalúa y puntúa una escalera larga (cinco en secuencia).
+int escalera_larga(int dado[5], int combo_c[13], int puntos[13]);
+
+// Evalúa y puntúa una generala (cinco dados iguales).
+int generala(int dado[5], int combo_c[13], int puntos[13]);
+
+// Permite sumar la puntuación de todos los dados sin condiciones específicas.
+int azar(int dado[5], int combo_c[13], int puntos[13]);
+
+// Finaliza el juego y muestra el ganador basado en la puntuación total.
+void finalizar_juego(int p1_puntos[13], int p2_puntos[13]);
+
+#endif // !GENERALA_H
