@@ -1,85 +1,78 @@
 /*************************************************************************
  * Programado por: Sebastian Rojas y Mateo Rios                          *
- * Clase: TAI                                        					 *
- * Tarea: Juego de generala								                 *
+ * Clase: TAI                                                            *
+ * Tarea: Juego de generala                                              *
  * Fecha: 10/05/24                                                       *
- *                                                                       *
- *																		 *
  ************************************************************************/
 
-
 #include "Generala.h"
-
-
 
 /************************************************************
  * Función: juego_principal                                 *
  * Fecha de creación: 10/05/24                              *
  * Fecha de última modificación: 10/05/24                   *
- * Descripción: Ejecuta el juego principal de Yahtzee.      *
+ * Descripción: Ejecuta el juego principal de Generala.     *
  * Parámetros de entrada: ninguno                           *
  * Retorna: ninguno                                         *
  * Precondiciones: Inicio del programa                      *
  * Postcondiciones: ninguna                                 *
- *************************************************************/
+ ************************************************************/
 void juego_principal(void)
 {
-	// Declaración de variables
-	int dado[5] = {0}, p1_puntuaciones[13] = {0}, p1_combinaciones[13] = {0}, p2_puntuaciones[13] = {0}, p2_combinaciones[13] = {0}, jugador = 1, turno = 0;
+    // Declaración de variables
+    int dado[5] = {0}, p1_puntuaciones[13] = {0}, p1_combinaciones[13] = {0}, p2_puntuaciones[13] = {0}, p2_combinaciones[13] = {0}, jugador = 1, turno = 0;
 
-	// Inicialización del generador de números aleatorios
-	srand((unsigned int)time(NULL));
+    // Inicialización del generador de números aleatorios
+    srand((unsigned int)time(NULL));
 
-	while(menu_juego())
-	{
+    while(menu_juego())
+    {
+        while(turno < 14)
+        {
+            // JUGADOR 1
+            system("cls");
+            printf("--- JUGADOR 1 - RONDA %d ---\n\n", turno);
+            tirar_dado(dado, 5);
+            imprimir_dado(dado, 5, p1_combinaciones);
+            relanzar(dado, 5, p1_combinaciones, 1, turno);
+            elegir_combo(dado, 5, p1_combinaciones, p1_puntuaciones, 1, turno);
+            
+            system("cls");
+            printf("--- JUGADOR 1 - RONDA %d ---\n\n", turno);
+            imprimir_puntuacion(p1_puntuaciones, 1);
 
-		while(turno < 14)
-		{
-			// JUGADOR 1
-			system("cls");
-			printf("--- JUGADOR 1 - RONDA %d ---\n\n", turno);
-			tirar_dado(dado, 5);
-			imprimir_dado(dado, 5, p1_combinaciones);
-			relanzar(dado, 5, p1_combinaciones, 1, turno);
-			elegir_combo(dado, 5, p1_combinaciones, p1_puntuaciones, 1, turno);
-			
-			system("cls");
-			printf("--- JUGADOR 1 - RONDA %d ---\n\n", turno);
-			imprimir_puntuacion(p1_puntuaciones, 1);
+            printf("\nPresiona cualquier tecla para cambiar al jugador 2.");
+            system("pause > nul");
+            system("cls");
 
-			printf("\nPresiona cualquier tecla para cambiar al jugador 2.");
-			system("pause > nul");
-			system("cls");
+            // JUGADOR 2
+            system("cls");
+            printf("--- JUGADOR 2 - RONDA %d ---\n\n", turno);
+            tirar_dado(dado, 5);
+            imprimir_dado(dado, 5, p2_combinaciones);
+            relanzar(dado, 5, p2_combinaciones, 2, turno);
+            elegir_combo(dado, 5, p2_combinaciones, p2_puntuaciones, 2, turno);
+            
+            system("cls");
+            printf("--- JUGADOR 2 - RONDA %d ---\n\n", turno);
+            imprimir_puntuacion(p2_puntuaciones, 2);
 
-			// JUGADOR 2
-			system("cls");
-			printf("--- JUGADOR 2 - RONDA %d ---\n\n", turno);
-			tirar_dado(dado, 5);
-			imprimir_dado(dado, 5, p2_combinaciones);
-			relanzar(dado, 5, p2_combinaciones, 2, turno);
-			elegir_combo(dado, 5, p2_combinaciones, p2_puntuaciones, 2, turno);
-			
-			system("cls");
-			printf("--- JUGADOR 2 - RONDA %d ---\n\n", turno);
-			imprimir_puntuacion(p2_puntuaciones, 2);
+            system("pause\n");
+            system("cls");
 
-			system("pause\n");
-			system("cls");
+            turno++;
+        }
 
-			turno++;
-		}
-
-		end_game(p1_puntuaciones, p2_puntuaciones);
-	}
-	printf("¡Adiós!\n\n");
+        finalizar_juego(p1_puntuaciones, p2_puntuaciones);
+    }
+    printf("¡Adiós!\n\n");
 }
-
 
 /***************************************************************
  * Función: menu_juego                                         *
  * Fecha de creación: 10/23/15                                 *
  * Fecha de última modificación: 10/23/15                      *
- * Descripción: Muestra el menú principal del juego Yahtzee.   *
+ * Descripción: Muestra el menú principal del juego Generala.  *
  * Parámetros de entrada: ninguno                              *
  * Retorna: entero indicando si se juega o no (1 o 0)          *
  * Precondiciones: Inicio del programa                         *
@@ -87,41 +80,41 @@ void juego_principal(void)
  ***************************************************************/
 int menu_juego(void)
 {
-	int opcion = 0, jugar = 0;
+    int opcion = 0, jugar = 0;
 
-	printf("-- Generala! --\n\n");
-	
-	do
-	{
-		do
-		{
-			printf("Elija una opción ingresando el número correspondiente:\n1. Imprimir las reglas del juego\n2. Iniciar un juego de Generala\n3. Salir\n");
-			scanf("%d", &opcion);
-		}
-		while (opcion != 1 && opcion != 2 && opcion != 3);
+    printf("-- Generala! --\n\n");
+    
+    do
+    {
+        do
+        {
+            printf("Elija una opción ingresando el número correspondiente:\n1. Imprimir las reglas del juego\n2. Iniciar un juego de Generala\n3. Salir\n");
+            scanf("%d", &opcion);
+        }
+        while (opcion != 1 && opcion != 2 && opcion != 3);
 
-		switch (opcion)
-		{
-		case 1:
-			system("cls");
-			printf("-- Generala! --\n");
-			printf("\nReglas del juego:\n\n");
-			printf("La tarjeta de puntuación consta de dos secciones, una superior y una inferior. Un total de trece casillas o combinaciones de puntuación se dividen entre las secciones. La sección superior se puntúa sumando el valor de los dados que coinciden con las caras de la casilla. Por ejemplo, si se lanzan cuatro 3's, la puntuación es 12. Una vez puntuada una casilla, no puede cambiarse. Si la suma en la sección superior es igual o superior a 63, se añaden 35 puntos de bonificación al total del jugador. La sección inferior contiene combinaciones de tipo póker.\n\n");
-			break;
-		case 2: 
-			jugar = 1;
-			break;
-		case 3:
-			jugar = 0;
-			break;
-		default:
-			printf("Por favor, escriba una opción válida.\n");
-		}
-	}
-	while (opcion != 2 && opcion != 3);
-	system("cls");
-	
-	return jugar;
+        switch (opcion)
+        {
+        case 1:
+            system("cls");
+            printf("-- Generala! --\n");
+            printf("\nReglas del juego:\n\n");
+            printf("La tarjeta de puntuación consta de dos secciones, una superior y una inferior. Un total de trece casillas o combinaciones de puntuación se dividen entre las secciones. La sección superior se puntúa sumando el valor de los dados que coinciden con las caras de la casilla. Por ejemplo, si se lanzan cuatro 3's, la puntuación es 12. Una vez puntuada una casilla, no puede cambiarse. Si la suma en la sección superior es igual o superior a 63, se añaden 35 puntos de bonificación al total del jugador. La sección inferior contiene combinaciones de tipo póker.\n\n");
+            break;
+        case 2: 
+            jugar = 1;
+            break;
+        case 3:
+            jugar = 0;
+            break;
+        default:
+            printf("Por favor, escriba una opción válida.\n");
+        }
+    }
+    while (opcion != 2 && opcion != 3);
+    system("cls");
+    
+    return jugar;
 }
 
 /***************************************************************
@@ -136,20 +129,19 @@ int menu_juego(void)
  ***************************************************************/
 void tirar_dado(int dado[5], int tamano)
 {
-	char continuar = 0;
-	int indice = 0;
+    char continuar = 0;
+    int indice = 0;
 
-	printf("Presione cualquier tecla para lanzar los dados.\n\n");
-	system("pause > nul");
-	
-	for (indice = 0; indice < tamano; ++indice)
-	{
-		dado[indice] = rand() % 6 + 1;
-	}
+    printf("Presione cualquier tecla para lanzar los dados.\n\n");
+    system("pause > nul");
+    
+    for (indice = 0; indice < tamano; ++indice)
+    {
+        dado[indice] = rand() % 6 + 1;
+    }
 }
 
-
- /***************************************************************
+/***************************************************************
  * Función: imprimir_dado                                      *
  * Fecha de creación: 10/23/15                                 *
  * Fecha de última modificación: 10/23/15                      *
@@ -162,102 +154,102 @@ void tirar_dado(int dado[5], int tamano)
  ***************************************************************/
 void imprimir_dado(int dado[5], int tamano, int combos_c[13])
 {
-	int indice = 0;
-	int linea = 1;
+    int indice = 0;
+    int linea = 1;
 
-	// Imprime cada línea del dado 
-	while (linea <= 5)
-	{
-		switch (linea)
-		{
-			case 1:
-				// Imprime la parte superior de cada dado
-				for (indice = 0; indice < tamano; ++indice)
-				{
-					printf("-----\t");
-				}
-				printf("\n");
-				break;
-			case 2:
-				// Imprime la segunda línea con representación de los puntos del dado
-				for (indice = 0; indice < tamano; ++indice)
-				{
-					switch(dado[indice])
-					{
-						case 1:
-							printf("|   |\t");
-							break;
-						case 2:
-						case 3:
-							printf("|o  |\t");
-							break;
-						case 4:
-						case 5:
-						case 6:
-							printf("|o o|\t");
-							break;
-					}
-				}
-				printf("\n");
-				break;
-			case 3:
-				// Imprime la línea central de cada dado
-				for (indice = 0; indice < tamano; ++indice)
-				{
-					switch(dado[indice])
-					{
-						case 1:
-						case 3:
-						case 5:
-							printf("| o |\t");
-							break;
-						case 2:
-						case 4:
-							printf("|   |\t");
-							break;
-						case 6:
-							printf("|o o|\t");
-							break;
-					}
-				}
-				printf("\n");
-				break;
-			case 4:
-				// Imprime la cuarta línea con representación de los puntos del dado
-				for (indice = 0; indice < tamano; ++indice)
-				{
-					switch(dado[indice])
-					{
-						case 1:
-							printf("|   |\t");
-							break;
-						case 2:
-						case 3:
-							printf("|  o|\t");
-							break;
-						case 4:
-						case 5:
-						case 6:
-							printf("|o o|\t");
-							break;
-					}
-				}
-				printf("\n");
-				break;
-			case 5:
-				// Imprime la base de cada dado
-				for (indice = 0; indice < tamano; ++indice)
-				{
-					printf("-----\t");
-				}
-				printf("\n\n");
-				break;
-		}
-		linea++;
-	}
+    // Imprime cada línea del dado 
+    while (linea <= 5)
+    {
+        switch (linea)
+        {
+            case 1:
+                // Imprime la parte superior de cada dado
+                for (indice = 0; indice < tamano; ++indice)
+                {
+                    printf("-----\t");
+                }
+                printf("\n");
+                break;
+            case 2:
+                // Imprime la segunda línea con representación de los puntos del dado
+                for (indice = 0; indice < tamano; ++indice)
+                {
+                    switch(dado[indice])
+                    {
+                        case 1:
+                            printf("|   |\t");
+                            break;
+                        case 2:
+                        case 3:
+                            printf("|o  |\t");
+                            break;
+                        case 4:
+                        case 5:
+                        case 6:
+                            printf("|o o|\t");
+                            break;
+                    }
+                }
+                printf("\n");
+                break;
+            case 3:
+                // Imprime la línea central de cada dado
+                for (indice = 0; indice < tamano; ++indice)
+                {
+                    switch(dado[indice])
+                    {
+                        case 1:
+                        case 3:
+                        case 5:
+                            printf("| o |\t");
+                            break;
+                        case 2:
+                        case 4:
+                            printf("|   |\t");
+                            break;
+                        case 6:
+                            printf("|o o|\t");
+                            break;
+                    }
+                }
+                printf("\n");
+                break;
+            case 4:
+                // Imprime la cuarta línea con representación de los puntos del dado
+                for (indice = 0; indice < tamano; ++indice)
+                {
+                    switch(dado[indice])
+                    {
+                        case 1:
+                            printf("|   |\t");
+                            break;
+                        case 2:
+                        case 3:
+                            printf("|  o|\t");
+                            break;
+                        case 4:
+                        case 5:
+                        case 6:
+                            printf("|o o|\t");
+                            break;
+                    }
+                }
+                printf("\n");
+                break;
+            case 5:
+                // Imprime la base de cada dado
+                for (indice = 0; indice < tamano; ++indice)
+                {
+                    printf("-----\t");
+                }
+                printf("\n\n");
+                break;
+        }
+        linea++;
+    }
 
-	// Imprime las combinaciones de puntuaciones disponibles
-	print_combos(combos_c);
+    // Imprime las combinaciones de puntuaciones disponibles
+    imprimir_combos(combos_c);
 }
 
 
@@ -341,43 +333,43 @@ void elegir_combo(int dado[5], int tamano, int combo_c[13], int puntuaciones[13]
         switch (seleccion)
         {
             case 1:
-                es_combo_valido = ones(dado, combo_c, puntuaciones);
+                es_combo_valido = unos(dado, combo_c, puntuaciones);
                 break;
             case 2:
-                es_combo_valido = twos(dado, combo_c, puntuaciones);
+                es_combo_valido = doses(dado, combo_c, puntuaciones);
                 break;
             case 3:
-                es_combo_valido = threes(dado, combo_c, puntuaciones);
+                es_combo_valido = treses(dado, combo_c, puntuaciones);
                 break;
             case 4:
-                es_combo_valido = fours(dado, combo_c, puntuaciones);
+                es_combo_valido = cuatros(dado, combo_c, puntuaciones);
                 break;
             case 5:
-                es_combo_valido = fives(dado, combo_c, puntuaciones);
+                es_combo_valido = cincos(dado, combo_c, puntuaciones);
                 break;
             case 6:
-                es_combo_valido = sixes(dado, combo_c, puntuaciones);
+                es_combo_valido = seises(dado, combo_c, puntuaciones);
                 break;
             case 7:
-                es_combo_valido = three_of_a_kind(dado, combo_c, puntuaciones);
+                es_combo_valido = trio(dado, combo_c, puntuaciones);
                 break;
             case 8:
-                es_combo_valido = four_of_a_kind(dado, combo_c, puntuaciones);
+                es_combo_valido = poker(dado, combo_c, puntuaciones);
                 break;
             case 9:
-                es_combo_valido = full_house(dado, combo_c, puntuaciones);
+                es_combo_valido = full(dado, combo_c, puntuaciones);
                 break;
             case 10:
-                es_combo_valido = sm_straight(dado, combo_c, puntuaciones);
+                es_combo_valido = escalera_corta(dado, combo_c, puntuaciones);
                 break;
             case 11:
-                es_combo_valido = lg_straight(dado, combo_c, puntuaciones);
+                es_combo_valido = escalera_larga(dado, combo_c, puntuaciones);
                 break;
             case 12:
-                es_combo_valido = yahtzee(dado, combo_c, puntuaciones);
+                es_combo_valido = generala(dado, combo_c, puntuaciones);
                 break;
             case 13:
-                es_combo_valido = chance(dado, combo_c, puntuaciones);
+                es_combo_valido = azar(dado, combo_c, puntuaciones);
                 break;
             default:
                 printf("Por favor, ingrese una selección válida.\n\n");
@@ -389,669 +381,680 @@ void elegir_combo(int dado[5], int tamano, int combo_c[13], int puntuaciones[13]
 
 
  /************************************************************
- * Función: print_combos (int combo_c[13])					 *
- * Fecha Created: 10/23/15                                    *
- * Fecha Last Modified: 10/23/15                              *
- * Descripción: prints combo choices, with X if used    	 *
- * Parámetros de entrada: combo array							 *
- * Devuelve: ninguno									         *
- * Precondiciones: Start of program                           *
- * Postcondiciones:										     *
+ * Función: imprimir_combos                                  *
+ * Fecha de creación: 10/23/15                               *
+ * Fecha de última modificación: 10/23/15                    *
+ * Descripción: Imprime las opciones de combos, con X si ya  *
+ *              se han utilizado.                            *
+ * Parámetros de entrada: array de combos                    *
+ * Devuelve: ninguno                                         *
+ * Precondiciones: Inicio del programa                       *
+ * Postcondiciones:                                          *
  *************************************************************/
-void print_combos (int combo_c[13])
+void imprimir_combos(int combo_c[13])
 {
-	// Prints all the combinations, or an X if it's been used
-	if (combo_c[0] == 0)
-	{printf ("1. Sum of 1s\n");}
-	else {printf ("X. Sum of 1s\n");}
+    // Imprime todas las combinaciones, o una X si ya se han utilizado
+    if (combo_c[0] == 0)
+    {printf("1. Suma de unos\n");}
+    else {printf("X. Suma de unos\n");}
 
-	if (combo_c[1] == 0)
-	{printf ("2. Sum of 2s\n");}
-	else {printf ("X. Sum of 2s\n");}
+    if (combo_c[1] == 0)
+    {printf("2. Suma de doses\n");}
+    else {printf("X. Suma de doses\n");}
 
-	if (combo_c[2] == 0)
-	{printf ("3. Sum of 3s\n");}
-	else {printf ("X. Sum of 3s\n");}
+    if (combo_c[2] == 0)
+    {printf("3. Suma de treses\n");}
+    else {printf("X. Suma de treses\n");}
 
-	if (combo_c[3] == 0)
-	{printf ("4. Sum of 4s\n");}
-	else {printf ("X. Sum of 4s\n");}
+    if (combo_c[3] == 0)
+    {printf("4. Suma de cuatros\n");}
+    else {printf("X. Suma de cuatros\n");}
 
-	if (combo_c[4] == 0)
-	{printf ("5. Sum of 5s\n");}
-	else {printf ("X. Sum of 5s\n");}
+    if (combo_c[4] == 0)
+    {printf("5. Suma de cincos\n");}
+    else {printf("X. Suma de cincos\n");}
 
-	if (combo_c[5] == 0)
-	{printf ("6. Sum of 6s\n");}
-	else {printf ("X. Sum of 6s\n");}
+    if (combo_c[5] == 0)
+    {printf("6. Suma de seises\n");}
+    else {printf("X. Suma de seises\n");}
 
-	if (combo_c[6] == 0)
-	{printf ("7. Three of a kind\n");}
-	else {printf ("X. Three of a kind\n");}
+    if (combo_c[6] == 0)
+    {printf("7. Trio\n");}
+    else {printf("X. Trio\n");}
 
-	if (combo_c[7] == 0)
-	{printf ("8. Four of a kind\n");}
-	else {printf ("X. Four of a kind\n");}
+    if (combo_c[7] == 0)
+    {printf("8. Poker\n");}
+    else {printf("X. Poker\n");}
 
-	if (combo_c[8] == 0)
-	{printf ("9. Full house\n");}
-	else {printf ("X. Full house\n");}
+    if (combo_c[8] == 0)
+    {printf("9. Full\n");}
+    else {printf("X. Full\n");}
 
-	if (combo_c[9] == 0)
-	{printf ("10. Small Straight\n");}
-	else {printf ("X. Small Straight\n");}
+    if (combo_c[9] == 0)
+    {printf("10. Escalera corta\n");}
+    else {printf("X. Escalera corta\n");}
 
-	if (combo_c[10] == 0)
-	{printf ("11. Large Straight\n");}
-	else {printf ("X. Large Straight\n");}
+    if (combo_c[10] == 0)
+    {printf("11. Escalera larga\n");}
+    else {printf("X. Escalera larga\n");}
 
-	// Can be used an unlimited amount of times
-	printf ("12. YAHTZEE\n");
+    // Se puede usar un número ilimitado de veces
+    printf("12. GENERALA\n");
 
-	if (combo_c[12] == 0)
-	{printf ("13. Chance\n\n");}
-	else {printf ("X. Chance\n\n");}
+    if (combo_c[11] == 0)
+    {printf("13. Azar\n\n");}
+    else {printf("X. Azar\n\n");}
 }
 
  /************************************************************
- * Función: imprimir_puntuacion (int puntuaciones[13], int jugador)		 *
- * Fecha Created: 10/23/15                                    *
- * Fecha Last Modified: 10/23/15                              *
- * Descripción: prints jugador score					    	 *
- * Parámetros de entrada: puntuaciones array, jugador					 *
- * Devuelve: ninguno									         *
- * Precondiciones: Start of program                           *
- * Postcondiciones:										     *
+ * Función: imprimir_puntuacion                             *
+ * Fecha de creación: 10/23/15                               *
+ * Fecha de última modificación: 10/23/15                    *
+ * Descripción: Imprime la puntuación del jugador            *
+ * Parámetros de entrada: array de puntuaciones, jugador     *
+ * Devuelve: ninguno                                         *
+ * Precondiciones: Inicio del programa                       *
+ * Postcondiciones:                                          *
  *************************************************************/
-void imprimir_puntuacion (int puntuaciones[13], int jugador)
+void imprimir_puntuacion(int puntuaciones[13], int jugador)
 {
-	int sum = 0, index = 0;
-	for (index= 0; index<13; index++)
-	{
-		sum = puntuaciones[index] + sum;
-	}
-	printf("Player %d's score is now %d.\n", jugador, sum);
+    int suma = 0, indice = 0;
+    for (indice= 0; indice<13; indice++)
+    {
+        suma = puntuaciones[indice] + suma;
+    }
+    printf("El puntaje del jugador %d es ahora %d.\n", jugador, suma);
 }
 
  /************************************************************
- * Función: ones (int dado[5], int combo_c[13], int points[13])
- * Fecha Created: 10/23/15                                    *
- * Fecha Last Modified: 10/23/15                              *
- * Descripción: Adds sum of 1s, adds to puntuaciones array		 *
- * Parámetros de entrada: dado array, combo array, points array	 *
- * Devuelve: 1 if combo has been used, 0 if not			     *
- * Precondiciones: Start of program                           *
- * Postcondiciones: updates points and combo arrays		     *
+ * Función: unos (int dado[5], int combo_c[13], int puntos[13])
+ * Fecha de creación: 10/23/15                                *
+ * Fecha de última modificación: 10/23/15                     *
+ * Descripción: Suma los unos y lo añade al array de puntos   *
+ * Parámetros de entrada: array de dados, array de combos,    *
+ *                        array de puntos                     *
+ * Devuelve: 1 si el combo ha sido utilizado, 0 si no         *
+ * Precondiciones: Inicio del programa                        *
+ * Postcondiciones: actualiza los arrays de puntos y combos   *
  *************************************************************/
-int ones (int dado[5], int combo_c[13], int points[13])
+int unos(int dado[5], int combo_c[13], int puntos[13])
 {
-	int index = 0, sum = 0, value = 0;
+    int indice = 0, suma = 0, valor = 0;
 
-	if (combo_c[0] == 0)
-	{
-		combo_c[0] = 1;
-		value = 1;
-		for (index= 0; index<5; index++)
-		{
-			if(dado[index] == 1)
-			{sum = sum + 1;}
-		}
-		points[0] = sum;
-	}
-	return value;
+    if (combo_c[0] == 0)
+    {
+        combo_c[0] = 1;
+        valor = 1;
+        for (indice = 0; indice<5; indice++)
+        {
+            if(dado[indice] == 1)
+            {suma = suma + 1;}
+        }
+        puntos[0] = suma;
+    }
+    return valor;
 }
 
  /************************************************************
- * Función: twos (int dado[5], int combo_c[13], int points[13])
- * Fecha Created: 10/23/15                                    *
- * Fecha Last Modified: 10/23/15                              *
- * Descripción: Adds sum of 2s, adds to puntuaciones array		 *
- * Parámetros de entrada: dado array, combo array, points array	 *
- * Devuelve: 1 if combo has been used, 0 if not			     *
- * Precondiciones: Start of program                           *
- * Postcondiciones: updates points and combo arrays		     *
+ * Función: doses (int dado[5], int combo_c[13], int puntos[13])
+ * Fecha de creación: 10/23/15                                *
+ * Fecha de última modificación: 10/23/15                     *
+ * Descripción: Suma los doses y lo añade al array de puntos  *
+ * Parámetros de entrada: array de dados, array de combos,    *
+ *                        array de puntos                     *
+ * Devuelve: 1 si el combo ha sido utilizado, 0 si no         *
+ * Precondiciones: Inicio del programa                        *
+ * Postcondiciones: actualiza los arrays de puntos y combos   *
  *************************************************************/
-int twos (int dado[5], int combo_c[13], int points[13])
+int doses(int dado[5], int combo_c[13], int puntos[13])
 {
-	int index = 0, sum = 0, value = 0;
+    int indice = 0, suma = 0, valor = 0;
 
-	if (combo_c[1] == 0)
-	{
-		combo_c[1] = 1;
-		value = 1;
-		for (index= 0; index<5; index++)
-		{
-			if(dado[index] == 2)
-			{sum = sum + 1;}
-		}
-		points[1] = sum*2;
-	}
-	return value;
+    if (combo_c[1] == 0)
+    {
+        combo_c[1] = 1;
+        valor = 1;
+        for (indice = 0; indice<5; indice++)
+        {
+            if(dado[indice] == 2)
+            {suma = suma + 2;}
+        }
+        puntos[1] = suma;
+    }
+    return valor;
 }
 
  /************************************************************
- * Función: threes (int dado[5], int combo_c[13], int points[13])
- * Fecha Created: 10/23/15                                    *
- * Fecha Last Modified: 10/23/15                              *
- * Descripción: Adds sum of 3s, adds to puntuaciones array		 *
- * Parámetros de entrada: dado array, combo array, points array	 *
- * Devuelve: 1 if combo has been used, 0 if not			     *
- * Precondiciones: Start of program                           *
- * Postcondiciones: updates points and combo arrays		     *
+ * Función: treses (int dado[5], int combo_c[13], int puntos[13])
+ * Fecha de creación: 10/23/15                                *
+ * Fecha de última modificación: 10/23/15                     *
+ * Descripción: Suma los treses y lo añade al array de puntos *
+ * Parámetros de entrada: array de dados, array de combos,    *
+ *                        array de puntos                     *
+ * Devuelve: 1 si el combo ha sido utilizado, 0 si no         *
+ * Precondiciones: Inicio del programa                        *
+ * Postcondiciones: actualiza los arrays de puntos y combos   *
  *************************************************************/
-int threes (int dado[5], int combo_c[13], int points[13])
+int treses(int dado[5], int combo_c[13], int puntos[13])
 {
-	int index = 0, sum = 0, value = 0;
+    int indice = 0, suma = 0, valor = 0;
 
-	if (combo_c[2] == 0)
-	{
-		combo_c[2] = 1;
-		value = 1;
-		for (index= 0; index<5; index++)
-		{
-			if(dado[index] == 3)
-			{sum = sum + 1;}
-		}
-		points[2] = sum*3;
-	}
-	return value;
+    if (combo_c[2] == 0)
+    {
+        combo_c[2] = 1;
+        valor = 1;
+        for (indice = 0; indice<5; indice++)
+        {
+            if(dado[indice] == 3)
+            {suma = suma + 3;}
+        }
+        puntos[2] = suma;
+    }
+    return valor;
 }
 
  /************************************************************
- * Función: fours (int dado[5], int combo_c[13], int points[13])
- * Fecha Created: 10/23/15                                    *
- * Fecha Last Modified: 10/23/15                              *
- * Descripción: Adds sum of 4s, adds to puntuaciones array		 *
- * Parámetros de entrada: dado array, combo array, points array	 *
- * Devuelve: 1 if combo has been used, 0 if not			     *
- * Precondiciones: Start of program                           *
- * Postcondiciones: updates points and combo arrays		     *
+ * Función: cuatros (int dado[5], int combo_c[13], int puntos[13])
+ * Fecha de creación: 10/23/15                                *
+ * Fecha de última modificación: 10/23/15                     *
+ * Descripción: Suma los cuatros y lo añade al array de puntos*
+ * Parámetros de entrada: array de dados, array de combos,    *
+ *                        array de puntos                     *
+ * Devuelve: 1 si el combo ha sido utilizado, 0 si no         *
+ * Precondiciones: Inicio del programa                        *
+ * Postcondiciones: actualiza los arrays de puntos y combos   *
  *************************************************************/
-int fours (int dado[5], int combo_c[13], int points[13])
+int cuatros(int dado[5], int combo_c[13], int puntos[13])
 {
-	int index = 0, sum = 0, value = 0;
+    int indice = 0, suma = 0, valor = 0;
 
-	if (combo_c[3] == 0)
-	{
-		combo_c[3] = 1;
-		value = 1;
-		for (index= 0; index<5; index++)
-		{
-			if(dado[index] == 4)
-			{sum = sum + 1;}
-		}
-		points[3] = sum*4;
-	}
-	return value;
+    if (combo_c[3] == 0)
+    {
+        combo_c[3] = 1;
+        valor = 1;
+        for (indice = 0; indice<5; indice++)
+        {
+            if(dado[indice] == 4)
+            {suma = suma + 4;}
+        }
+        puntos[3] = suma;
+    }
+    return valor;
 }
 
  /************************************************************
- * Función: fives (int dado[5], int combo_c[13], int points[13])
- * Fecha Created: 10/23/15                                    *
- * Fecha Last Modified: 10/23/15                              *
- * Descripción: Adds sum of 5s, adds to puntuaciones array		 *
- * Parámetros de entrada: dado array, combo array, points array	 *
- * Devuelve: 1 if combo has been used, 0 if not			     *
- * Precondiciones: Start of program                           *
- * Postcondiciones: updates points and combo arrays		     *
+ * Función: cincos (int dado[5], int combo_c[13], int puntos[13])
+ * Fecha de creación: 10/23/15                                *
+ * Fecha de última modificación: 10/23/15                     *
+ * Descripción: Suma los cincos y lo añade al array de puntos *
+ * Parámetros de entrada: array de dados, array de combos,    *
+ *                        array de puntos                     *
+ * Devuelve: 1 si el combo ha sido utilizado, 0 si no         *
+ * Precondiciones: Inicio del programa                        *
+ * Postcondiciones: actualiza los arrays de puntos y combos   *
  *************************************************************/
-int fives (int dado[5], int combo_c[13], int points[13])
+int cincos(int dado[5], int combo_c[13], int puntos[13])
 {
-	int index = 0, sum = 0, value = 0;
+    int indice = 0, suma = 0, valor = 0;
 
-	if (combo_c[4] == 0)
-	{
-		combo_c[4] = 1;
-		value = 1;
-		for (index= 0; index<5; index++)
-		{
-			if(dado[index] == 5)
-			{sum = sum + 1;}
-		}
-		points[4] = sum*5;
-	}
-	return value;
+    if (combo_c[4] == 0)
+    {
+        combo_c[4] = 1;
+        valor = 1;
+        for (indice = 0; indice<5; indice++)
+        {
+            if(dado[indice] == 5)
+            {suma = suma + 5;}
+        }
+        puntos[4] = suma;
+    }
+    return valor;
 }
 
  /************************************************************
- * Función: sixes (int dado[5], int combo_c[13], int points[13])
- * Fecha Created: 10/23/15                                    *
- * Fecha Last Modified: 10/23/15                              *
- * Descripción: Adds sum of 6s, adds to puntuaciones array		 *
- * Parámetros de entrada: dado array, combo array, points array	 *
- * Devuelve: 1 if combo has been used, 0 if not			     *
- * Precondiciones: Start of program                           *
- * Postcondiciones: updates points and combo arrays		     *
+ * Función: seises (int dado[5], int combo_c[13], int puntos[13])
+ * Fecha de creación: 10/23/15                                *
+ * Fecha de última modificación: 10/23/15                     *
+ * Descripción: Suma los seises y lo añade al array de puntos *
+ * Parámetros de entrada: array de dados, array de combos,    *
+ *                        array de puntos                     *
+ * Devuelve: 1 si el combo ha sido utilizado, 0 si no         *
+ * Precondiciones: Inicio del programa                        *
+ * Postcondiciones: actualiza los arrays de puntos y combos   *
  *************************************************************/
-int sixes (int dado[5], int combo_c[13], int points[13])
+int seises(int dado[5], int combo_c[13], int puntos[13])
 {
-	int index = 0, sum = 0, value = 0;
+    int indice = 0, suma = 0, valor = 0;
 
-	if (combo_c[5] == 0)
-	{
-		combo_c[5] = 1;
-		value = 1;
-		for (index= 0; index<5; index++)
-		{
-			if(dado[index] == 6)
-			{sum = sum + 1;}
-		}
-		points[5] = sum*6;
-	}
-	return value;
+    if (combo_c[5] == 0)
+    {
+        combo_c[5] = 1;
+        valor = 1;
+        for (indice = 0; indice<5; indice++)
+        {
+            if(dado[indice] == 6)
+            {suma = suma + 6;}
+        }
+        puntos[5] = suma;
+    }
+    return valor;
 }
 
  /************************************************************
- * Función: three_of_a_kind (int dado[5],					 *
- *		 	 int combo_c[13], int points[13])				 *
- * Fecha Created: 10/23/15                                    *
- * Fecha Last Modified: 10/23/15                              *
- * Descripción: Checks if 3OAK, then adds sum of dado		 *
- * Parámetros de entrada: dado array, combo array, points array	 *
- * Devuelve: 1 if combo has been used, 0 if not			     *
- * Precondiciones: Start of program                           *
- * Postcondiciones: updates points and combo arrays		     *
+ * Función: trio (int dado[5],					             *
+ *		 	 int combo_c[13], int puntos[13])				 *
+ * Fecha de creación: 10/23/15                                *
+ * Fecha de última modificación: 10/23/15                     *
+ * Descripción: Verifica si hay un trío y luego suma los dados*
+ * Parámetros de entrada: array de dados, array de combos,    *
+ *                        array de puntos                     *
+ * Devuelve: 1 si el combo ha sido utilizado, 0 si no         *
+ * Precondiciones: Inicio del programa                        *
+ * Postcondiciones: actualiza los arrays de puntos y combos   *
  *************************************************************/
-int three_of_a_kind (int dado[5], int combo_c[13], int points[13])
+int trio(int dado[5], int combo_c[13], int puntos[13])
 {
-	int number = 0, result = 0, sum = 0;
+    int numero = 0, resultado = 0, suma = 0;
 
-	// Checks if combo has been used before
-	if (combo_c[6] == 0)
-	{
-		result = 1;
-		combo_c[6] = 1; // Sets combo to used
-		for (number = 1; number<7; number++)
-		{
-			sum = 0;
+    // Verifica si el combo ha sido utilizado anteriormente
+    if (combo_c[6] == 0)
+    {
+        resultado = 1;
+        combo_c[6] = 1; // Establece el combo como utilizado
+        for (numero = 1; numero<7; numero++)
+        {
+            suma = 0;
 
-			if (dado[0] == number)
-			{sum = sum +1;}
-			if (dado[1] == number)
-			{sum = sum +1;}
-			if (dado[2] == number)
-			{sum = sum +1;}
-			if (dado[3] == number)
-			{sum = sum +1;}
-			if (dado[4] == number)
-			{sum = sum +1;}
-			
-			// Adds points if three of a kind
-			if (sum>= 3)
-			{
-				points[6] = dado [0] + dado[1] + dado[2] + dado[3] + dado[4];
-				break;
-			}		
-		}
-		
-	}
-	return result;
+            if (dado[0] == numero)
+            {suma = suma +1;}
+            if (dado[1] == numero)
+            {suma = suma +1;}
+            if (dado[2] == numero)
+            {suma = suma +1;}
+            if (dado[3] == numero)
+            {suma = suma +1;}
+            if (dado[4] == numero)
+            {suma = suma +1;}
+            
+            // Añade puntos si hay un trío
+            if (suma>= 3)
+            {
+                puntos[6] = dado[0] + dado[1] + dado[2] + dado[3] + dado[4];
+                break;
+            }       
+        }
+        
+    }
+    return resultado;
 }
 
  /************************************************************
- * Función: four_of_a_kind (int dado[5],					 *
- *		 	 int combo_c[13], int points[13])				 *
- * Fecha Created: 10/23/15                                    *
- * Fecha Last Modified: 10/23/15                              *
- * Descripción: Checks if 4OAK, then adds sum of dado		 *
- * Parámetros de entrada: dado array, combo array, points array	 *
- * Devuelve: 1 if combo has been used, 0 if not			     *
- * Precondiciones: Start of program                           *
- * Postcondiciones: updates points and combo arrays		     *
+ * Función: poker (int dado[5],					             *
+ *		 	 int combo_c[13], int puntos[13])				 *
+ * Fecha de creación: 10/23/15                                *
+ * Fecha de última modificación: 10/23/15                     *
+ * Descripción: Verifica si hay un poker y luego suma los dados*
+ * Parámetros de entrada: array de dados, array de combos,    *
+ *                        array de puntos                     *
+ * Devuelve: 1 si el combo ha sido utilizado, 0 si no         *
+ * Precondiciones: Inicio del programa                        *
+ * Postcondiciones: actualiza los arrays de puntos y combos   *
  *************************************************************/
-int four_of_a_kind (int dado[5], int combo_c[13], int points[13])
+int poker(int dado[5], int combo_c[13], int puntos[13])
 {
-	int number = 0, result = 0, sum = 0;
+    int numero = 0, resultado = 0, suma = 0;
 
-	// Check if combo has been used before
-	if (combo_c[7] == 0)
-	{
-		combo_c[7] = 1; // Sets combo to used
-		// Checks if a dado matches a number, if it does then adds to a variable "sum". If sum = 3, then it breaks. Otherwise repeat with number+1. 
-		for (number = 1; number>5; number++)
-		{
-			sum = 0;
+    // Verifica si el combo ha sido utilizado anteriormente
+    if (combo_c[7] == 0)
+    {
+        combo_c[7] = 1; // Establece el combo como utilizado
+        // Verifica si un dado coincide con un número, si lo hace, se añade a una variable "suma". Si suma = 4, se rompe el ciclo. De lo contrario, se repite con número+1. 
+        for (numero = 1; numero<=6; numero++)
+        {
+            suma = 0;
 
-			if (dado[0] == number)
-			{sum = sum +1;}
-			if (dado[1] == number)
-			{sum = sum +1;}
-			if (dado[2] == number)
-			{sum = sum +1;}
-			if (dado[3] == number)
-			{sum = sum +1;}
-			if (dado[4] == number)
-			{sum = sum +1;}
+            if (dado[0] == numero)
+            {suma = suma +1;}
+            if (dado[1] == numero)
+            {suma = suma +1;}
+            if (dado[2] == numero)
+            {suma = suma +1;}
+            if (dado[3] == numero)
+            {suma = suma +1;}
+            if (dado[4] == numero)
+            {suma = suma +1;}
 
-			if (sum>= 4)
-			{
-				points[7] = dado [0] + dado[1] + dado[2] + dado[3] + dado[4];
-				break;
-			}
-		}
-		result = 1;
-	}
+            if (suma>= 4)
+            {
+                puntos[7] = dado[0] + dado[1] + dado[2] + dado[3] + dado[4];
+                break;
+            }
+        }
+        resultado = 1;
+    }
 
-	return result;
+    return resultado;
 }
 
  /************************************************************
- * Función: full_house	 (int dado[5],			    		 *
- *		 	 int combo_c[13], int points[13])				 *
- * Fecha Created: 10/23/15                                    *
- * Fecha Last Modified: 10/23/15                              *
- * Descripción: Checks if FH, then gives 25 points			 *
- * Parámetros de entrada: dado array, combo array, points array	 *
- * Devuelve: 1 if combo has been used, 0 if not			     *
- * Precondiciones: Start of program                           *
- * Postcondiciones: updates points and combo arrays		     *
+ * Función: full	 (int dado[5],			    	         *
+ *		 	 int combo_c[13], int puntos[13])				 *
+ * Fecha de creación: 10/23/15                                *
+ * Fecha de última modificación: 10/23/15                     *
+ * Descripción: Verifica si hay un full y luego otorga 25 puntos *
+ * Parámetros de entrada: array de dados, array de combos,    *
+ *                        array de puntos                     *
+ * Devuelve: 1 si el combo ha sido utilizado, 0 si no         *
+ * Precondiciones: Inicio del programa                        *
+ * Postcondiciones: actualiza los arrays de puntos y combos   *
  *************************************************************/
-int full_house (int dado[5], int combo_c[13], int points[13])
+int full(int dado[5], int combo_c[13], int puntos[13])
 {
-	int number = 0, result = 0, sum1 = 0, sum2 = 0, three=0, two=0, number2 = 0;
+    int numero = 0, resultado = 0, suma1 = 0, suma2 = 0, tres=0, dos=0, numero2 = 0;
 
-	// Checks if combo has been used before
-	if (combo_c[8] == 0)
-	{
-		combo_c[8] = 1; // Sets combo to used
+    // Verifica si el combo ha sido utilizado anteriormente
+    if (combo_c[8] == 0)
+    {
+        combo_c[8] = 1; // Establece el combo como utilizado
 
-		// Sets return value (if used or not) to 1
-		result = 1;
+        // Establece el valor de retorno (si se ha utilizado o no) a 1
+        resultado = 1;
 
-		//Checks for a three of a kind
-		for (number = 1; number<7; number++)
-		{
-			sum1 = 0;
+        // Verifica si hay un trío
+        for (numero = 1; numero<7; numero++)
+        {
+            suma1 = 0;
 
-			if (dado[0] == number)
-			{sum1 = sum1 +1;}
-			if (dado[1] == number)
-			{sum1 = sum1 +1;}
-			if (dado[2] == number)
-			{sum1 = sum1 +1;}
-			if (dado[3] == number)
-			{sum1 = sum1 +1;}
-			if (dado[4] == number)
-			{sum1 = sum1 +1;}
-			
-			if (sum1== 3)
-			{
-				break;
-			}	
-		}
+            if (dado[0] == numero)
+            {suma1 = suma1 +1;}
+            if (dado[1] == numero)
+            {suma1 = suma1 +1;}
+            if (dado[2] == numero)
+            {suma1 = suma1 +1;}
+            if (dado[3] == numero)
+            {suma1 = suma1 +1;}
+            if (dado[4] == numero)
+            {suma1 = suma1 +1;}
+            
+            if (suma1== 3)
+            {
+                tres = numero;  // Guarda el número del trío
+                break;
+            }   
+        }
 
-		// Checks for a two of a kind
-		for (number2 = 1; number2<7; number2++)
-		{
-			sum2 = 0;
+        // Verifica si hay un par
+        for (numero2 = 1; numero2<7; numero2++)
+        {
+            suma2 = 0;
 
-			if (dado[0] == number2)
-			{sum2 = sum2 +1;}
-			if (dado[1] == number2)
-			{sum2 = sum2 +1;}
-			if (dado[2] == number2)
-			{sum2 = sum2 +1;}
-			if (dado[3] == number2)
-			{sum2 = sum2 +1;}
-			if (dado[4] == number2)
-			{sum2 = sum2 +1;}
+            if (dado[0] == numero2)
+            {suma2 = suma2 +1;}
+            if (dado[1] == numero2)
+            {suma2 = suma2 +1;}
+            if (dado[2] == numero2)
+            {suma2 = suma2 +1;}
+            if (dado[3] == numero2)
+            {suma2 = suma2 +1;}
+            if (dado[4] == numero2)
+            {suma2 = suma2 +1;}
 
-			// If the two of the kind is the same number as three of a kind, ignore it
-			if (number2 == number)
-			{sum2 = 0;}
-			
-			if (sum2== 2)
-			{
-				if (sum2 + sum1 == 5)
-				{points[8] = 25;} 
-				break;
-			}	
-		}
-	}
-	return result;
-	
+            // Si el par es el mismo número que el trío, se ignora
+            if (numero2 == tres)
+            {suma2 = 0;}
+            
+            if (suma2== 2)
+            {
+                if (suma2 + suma1 == 5)
+                {puntos[8] = 25;} 
+                break;
+            }   
+        }
+    }
+    return resultado;
+    
 }
 
  /************************************************************
- * Función: sm_straight	 (int dado[5],			    	 *
- *		 	 int combo_c[13], int points[13])				 *
- * Fecha Created: 10/23/15                                    *
- * Fecha Last Modified: 10/23/15                              *
- * Descripción: Checks if sm straight, then gives 30 points	 *
- * Parámetros de entrada: dado array, combo array, points array	 *
- * Devuelve: 1 if combo has been used, 0 if not			     *
- * Precondiciones: Start of program                           *
- * Postcondiciones: updates points and combo arrays		     *
+ * Función: escalera_corta	 (int dado[5],			    	 *
+ *		 	 int combo_c[13], int puntos[13])				 *
+ * Fecha de creación: 10/23/15                                *
+ * Fecha de última modificación: 10/23/15                     *
+ * Descripción: Verifica si hay una escalera corta y otorga 30 puntos *
+ * Parámetros de entrada: array de dados, array de combos,    *
+ *                        array de puntos                     *
+ * Devuelve: 1 si el combo ha sido utilizado, 0 si no         *
+ * Precondiciones: Inicio del programa                        *
+ * Postcondiciones: actualiza los arrays de puntos y combos   *
  *************************************************************/
-int sm_straight (int dado[5], int combo_c[13], int points [13])
+int escalera_corta(int dado[5], int combo_c[13], int puntos[13])
 {
-	int index = 0, temp = 0, passes = 0, sum=0, result=0;
-	
-	// Checks if combo has been used
-	if (combo_c[9] == 0)
-	{
-		result = 1;
-		
-		combo_c[9] = 1;
-		// Sort by ascending order (taken from Andy's code)
-		for (passes = 1; passes < 5; passes++)
-		{
-			for (index = 0; index < 5 - passes; index++)
-			{
-				if (dado[index] > dado[index + 1])
-					{// swap
-					temp = dado[index];
-					dado[index] = dado[index+1];
-					dado[index+1] = temp;
-				}
-			}
-		}
+    int indice = 0, temporal = 0, pasadas = 0, suma=0, resultado=0;
+    
+    // Verifica si el combo ha sido utilizado
+    if (combo_c[9] == 0)
+    {
+        resultado = 1;
+        
+        combo_c[9] = 1;
+        // Ordena de menor a mayor (tomado del código de Andy)
+        for (pasadas = 1; pasadas < 5; pasadas++)
+        {
+            for (indice = 0; indice < 5 - pasadas; indice++)
+            {
+                if (dado[indice] > dado[indice + 1])
+                    {// intercambio
+                    temporal = dado[indice];
+                    dado[indice] = dado[indice+1];
+                    dado[indice+1] = temporal;
+                }
+            }
+        }
  
-	// Check for small straight
-	for (index = 4; index>0; index--)
-		{
-			if (dado[index] == dado[index -1] + 1)
-			{sum++;}
+    // Verifica si hay una escalera corta
+    for (indice = 4; indice>0; indice--)
+        {
+            if (dado[indice] == dado[indice -1] + 1)
+            {suma++;}
 
-		}
+        }
 
-	// Give points
-	if (sum>=3)
-	{points[9] = 30;}
-	}
+    // Otorga puntos
+    if (suma>=3)
+    {puntos[9] = 30;}
+    }
 
-	return result;
+    return resultado;
 }
 
  /************************************************************
- * Función: lg_straight	 (int dado[5],			    	 *
- *		 	 int combo_c[13], int points[13])				 *
- * Fecha Created: 10/23/15                                    *
- * Fecha Last Modified: 10/23/15                              *
- * Descripción: Checks if sm straight, then gives 40 points	 *
- * Parámetros de entrada: dado array, combo array, points array	 *
- * Devuelve: 1 if combo has been used, 0 if not			     *
- * Precondiciones: Start of program                           *
- * Postcondiciones: updates points and combo arrays		     *
+ * Función: escalera_larga	 (int dado[5],			    	 *
+ *		 	 int combo_c[13], int puntos[13])				 *
+ * Fecha de creación: 10/23/15                                *
+ * Fecha de última modificación: 10/23/15                     *
+ * Descripción: Verifica si hay una escalera larga y otorga 40 puntos *
+ * Parámetros de entrada: array de dados, array de combos,    *
+ *                        array de puntos                     *
+ * Devuelve: 1 si el combo ha sido utilizado, 0 si no         *
+ * Precondiciones: Inicio del programa                        *
+ * Postcondiciones: actualiza los arrays de puntos y combos   *
  *************************************************************/
-int lg_straight (int dado[5], int combo_c[13], int points [13])
+int escalera_larga(int dado[5], int combo_c[13], int puntos[13])
 {
-	int index = 0, temp = 0, passes = 0, sum=0, result=0;
-	
-	// Checks if combo has been used
-	if (combo_c[10] == 0)
-	{
-		result = 1;
-		combo_c[10]=1;
-		// Sort by ascending order (taken from Andy's code)
-		for (passes = 1; passes < 5; passes++)
-		{
-			for (index = 0; index < 5 - passes; index++)
-			{
-				if (dado[index] > dado[index + 1])
-					{// swap
-					temp = dado[index];
-					dado[index] = dado[index+1];
-					dado[index+1] = temp;
-				}
-			}
-		}
+    int indice = 0, temporal = 0, pasadas = 0, suma=0, resultado=0;
+    
+    // Verifica si el combo ha sido utilizado
+    if (combo_c[10] == 0)
+    {
+        resultado = 1;
+        combo_c[10]=1;
+        // Ordena de menor a mayor (tomado del código de Andy)
+        for (pasadas = 1; pasadas < 5; pasadas++)
+        {
+            for (indice = 0; indice < 5 - pasadas; indice++)
+            {
+                if (dado[indice] > dado[indice + 1])
+                    {// intercambio
+                    temporal = dado[indice];
+                    dado[indice] = dado[indice+1];
+                    dado[indice+1] = temporal;
+                }
+            }
+        }
  
-	// Check for small straight
-	for (index = 4; index>0; index--)
-		{
-			if (dado[index] == dado[index -1] + 1)
-			{sum++;}
+    // Verifica si hay una escalera larga
+    for (indice = 4; indice>0; indice--)
+        {
+            if (dado[indice] == dado[indice -1] + 1)
+            {suma++;}
 
-		}
+        }
 
-	// Give points
-	if (sum>=4)
-	{points[10] = 30;}
-	}
+    // Otorga puntos
+    if (suma>=4)
+    {puntos[10] = 40;}
+    }
 
-	return result;
+    return resultado;
 }
 
  /************************************************************
- * Función: lg_straight	 (int dado[5],			    	 *
- *		 	 int combo_c[13], int points[13])				 *
- * Fecha Created: 10/23/15                                    *
- * Fecha Last Modified: 10/23/15                              *
- * Descripción: Checks if yahtzee, then gives 50 points		 *
- * Parámetros de entrada: dado array, combo array, points array	 *
- * Devuelve: 1 if combo has been used, 0 if not			     *
- * Precondiciones: Start of program                           *
- * Postcondiciones: updates points and combo arrays		     *
+ * Función: generala	 (int dado[5],			    	     *
+ *		 	 int combo_c[13], int puntos[13])				 *
+ * Fecha de creación: 10/23/15                                *
+ * Fecha de última modificación: 10/23/15                     *
+ * Descripción: Verifica si hay una generala y otorga 50 puntos*
+ * Parámetros de entrada: array de dados, array de combos,    *
+ *                        array de puntos                     *
+ * Devuelve: 1 si el combo ha sido utilizado, 0 si no         *
+ * Precondiciones: Inicio del programa                        *
+ * Postcondiciones: actualiza los arrays de puntos y combos   *
  *************************************************************/
-int yahtzee (int dado[5], int combo_c[13], int points[13])
+int generala(int dado[5], int combo_c[13], int puntos[13])
 {
-	int number = 0, result = 0, sum = 0;
+    int numero = 0, resultado = 0, suma = 0;
 
-	// Check if combo has been used before
-	if (combo_c[11] == 0)
-	{
-		combo_c[11] = 1; // Sets combo to used
-			
-		for (number=0;number<5;number++)
-		{	
-			sum =0;
-			
-			if (dado[0] == number)
-			{sum = sum +1;}
-			if (dado[1] == number)
-			{sum = sum +1;}
-			if (dado[2] == number)
-			{sum = sum +1;}
-			if (dado[3] == number)
-			{sum = sum +1;}
-			if (dado[4] == number)
-			{sum = sum +1;}
+    // Verifica si el combo ha sido utilizado anteriormente
+    if (combo_c[11] == 0)
+    {
+        combo_c[11] = 1; // Establece el combo como utilizado
+            
+        for (numero=1; numero<=6; numero++)
+        {   
+            suma =0;
+            
+            if (dado[0] == numero)
+            {suma = suma +1;}
+            if (dado[1] == numero)
+            {suma = suma +1;}
+            if (dado[2] == numero)
+            {suma = suma +1;}
+            if (dado[3] == numero)
+            {suma = suma +1;}
+            if (dado[4] == numero)
+            {suma = suma +1;}
 
-			if (sum== 5)
-			{
-				points[11] = 50;
-			}
-		}
-		result = 1;
-	}
+            if (suma== 5)
+            {
+                puntos[11] = 50;
+            }
+        }
+        resultado = 1;
+    }
 
-	return result;
+    return resultado;
 }
 
  /************************************************************
- * Función: lg_straight	 (int dado[5],			    	 *
- *		 	 int combo_c[13], int points[13])				 *
- * Fecha Created: 10/23/15                                    *
- * Fecha Last Modified: 10/23/15                              *
- * Descripción: Adds up sum of all dado as points			 *
- * Parámetros de entrada: dado array, combo array, points array	 *
- * Devuelve: 1 if combo has been used, 0 if not			     *
- * Precondiciones: Start of program                           *
- * Postcondiciones: updates points and combo arrays		     *
+ * Función: azar	 (int dado[5],			    	         *
+ *		 	 int combo_c[13], int puntos[13])				 *
+ * Fecha de creación: 10/23/15                                *
+ * Fecha de última modificación: 10/23/15                     *
+ * Descripción: Suma todos los dados como puntos              *
+ * Parámetros de entrada: array de dados, array de combos,    *
+ *                        array de puntos                     *
+ * Devuelve: 1 si el combo ha sido utilizado, 0 si no         *
+ * Precondiciones: Inicio del programa                        *
+ * Postcondiciones: actualiza los arrays de puntos y combos   *
  *************************************************************/
-int chance (int dado[5], int combo_c[13], int points[13])
+int azar(int dado[5], int combo_c[13], int puntos[13])
 {
-	int result = 0, sum =0;
+    int resultado = 0, suma =0;
 
-	if (combo_c[12] == 0)
-	{
-		combo_c[12] = 1;
-		result = 1;
-		sum = dado[0] + dado[1] + dado[2] + dado[3] + dado[4];
-	
-		points[12] = sum;
-	}
+    if (combo_c[12] == 0)
+    {
+        combo_c[12] = 1;
+        resultado = 1;
+        suma = dado[0] + dado[1] + dado[2] + dado[3] + dado[4];
+    
+        puntos[12] = suma;
+    }
 
-
-
-	return result;
+    return resultado;
 }
 
  /************************************************************
- * Función: end_game (int p1_points[13], int p2_points[13]) *
- * Fecha Created: 10/23/15                                    *
- * Fecha Last Modified: 10/23/15                              *
- * Descripción: Adds extra 35 points if applicable, shows winner
- * Parámetros de entrada: jugador 1 and 2 point arrays			 *
- * Devuelve:												     *
- * Precondiciones: Start of program                           *
- * Postcondiciones:										     *
+ * Función: finalizar_juego (int p1_puntos[13], int p2_puntos[13]) *
+ * Fecha de creación: 10/23/15                                *
+ * Fecha de última modificación: 10/23/15                     *
+ * Descripción: Añade 35 puntos extra si es aplicable, muestra el ganador *
+ * Parámetros de entrada: arrays de puntos de los jugadores 1 y 2 *
+ * Devuelve:                                                   *
+ * Precondiciones: Inicio del programa                         *
+ * Postcondiciones:                                            *
  *************************************************************/
-void end_game (int p1_points[13], int p2_points[13])
+void finalizar_juego(int p1_puntos[13], int p2_puntos[13])
 {
-	int sum1 = 0, sum2 = 0, winner = 0, index=0;
+    int suma1 = 0, suma2 = 0, ganador = 0, indice=0;
 
-	printf("************************************************ GAME OVER ******************************************************\n");
-	
-	for (index = 0; index<5; index++)
-	{
-		sum1 = p1_points[index] + sum1;
-	}
-	for (index = 0; index<5; index++)
-	{
-		sum2 = p2_points[index] + sum2;
-	}
+    printf("************************************************ FIN DEL JUEGO ******************************************************\n");
+    
+    for (indice = 0; indice<13; indice++)
+    {
+        suma1 = p1_puntos[indice] + suma1;
+    }
+    for (indice = 0; indice<13; indice++)
+    {
+        suma2 = p2_puntos[indice] + suma2;
+    }
 
 
-	if ((p1_points[0]+p1_points[1]+p1_points[2]+p1_points[3]+p1_points[4]+p1_points[5])>63)
-	{sum1 = sum1+35;}
-	if ((p2_points[0]+p2_points[1]+p2_points[2]+p2_points[3]+p2_points[4]+p1_points[5])>63)
-	{sum2 = sum2+35;}
+    if ((p1_puntos[0]+p1_puntos[1]+p1_puntos[2]+p1_puntos[3]+p1_puntos[4]+p1_puntos[5])>63)
+    {suma1 = suma1+35;}
+    if ((p2_puntos[0]+p2_puntos[1]+p2_puntos[2]+p2_puntos[3]+p2_puntos[4]+p2_puntos[5])>63)
+    {suma2 = suma2+35;}
 
-	if (sum2>sum1)
-	{
-		winner=2;
-	}
+    if (suma2>suma1)
+    {
+        ganador=2;
+    }
 
-	if (sum1>sum2)
-	{
-		winner =1;
-	}
-	
-	if (sum1 == sum2)
-	{
-		winner = -1;
-	}
+    if (suma1>suma2)
+    {
+        ganador =1;
+    }
+    
+    if (suma1 == suma2)
+    {
+        ganador = -1;
+    }
 
-	switch (winner)
-	{
-	case 1:
-		printf("\n\nPlayer 1 wins with %d points!\nPlayer 2 has %d points.\n\n", sum1, sum2);
-		break;
-	case 2:
-		printf("\n\nPlayer 2 wins with %d points!\nPlayer 1 has %d points.\n\n", sum2, sum1);
-		break;
-	case -1:
-		printf("It's a tie! Both jugadors have %d points.\n\n", sum1);
-		break;
-	default:
-		printf("Error");
-	}
+    switch (ganador)
+    {
+    case 1:
+        printf("\n\nEl jugador 1 gana con %d puntos!\nEl jugador 2 tiene %d puntos.\n\n", suma1, suma2);
+        break;
+    case 2:
+        printf("\n\nEl jugador 2 gana con %d puntos!\nEl jugador 1 tiene %d puntos.\n\n", suma2, suma1);
+        break;
+    case -1:
+        printf("¡Es un empate! Ambos jugadores tienen %d puntos.\n\n", suma1);
+        break;
+    default:
+        printf("Error");
+    }
 
-	system("pause");
-	system("cls");
+    system("pause");
+    system("cls");
 
 }
-
-
