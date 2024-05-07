@@ -468,8 +468,8 @@ void imprimir_puntuacion(int puntuaciones[13], int jugador)
 
  /************************************************************
  * Función: unos (int dado[5], int combo_c[13], int puntos[13])
- * Fecha de creación: 10/23/15                                *
- * Fecha de última modificación: 10/23/15                     *
+ * Fecha de creación: 27/04/24                                *
+ * Fecha de última modificación: 27/04/24                     *
  * Descripción: Suma los unos y lo añade al array de puntos   *
  * Parámetros de entrada: array de dados, array de combos,    *
  *                        array de puntos                     *
