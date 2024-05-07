@@ -19,7 +19,7 @@
 
 
 
-#include "Yahtzee.h"
+#include "Generala.h"
 
 void main (void)
 {
