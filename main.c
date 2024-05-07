@@ -23,5 +23,5 @@
 
 void main (void)
 {
-	main_gameplay ();
+	juego_principal ();
 }
