@@ -1,7 +1,7 @@
 # Generala
 Un proyecto de programación en C  de pequeña escala para la clase de TAI 2024 ,diseñado para facilitar un juego de Generala para un jugador vs la maquina en un entorno de consola. 
 Cuenta con una representación dinámica de los dados , mejorando la experiencia visual con cada lanzamiento. 
-El programa está diseñado para monitorear meticulosamente qué combinaciones han sido utilizadas previamente, evitando su repetición. Automáticamente verifica cada tirada para confirmar 
+El programa está diseñado para monitorear las combinaciones que han sido utilizadas previamente, evitando su repetición. Automáticamente verifica cada tirada para confirmar 
 si el jugador ha logrado la combinación requerida y asigna puntos basados en estos logros.
 ### Descripción de la manera en que se planeó inicialmente el desarrollo del programa
 
