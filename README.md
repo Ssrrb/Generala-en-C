@@ -91,7 +91,7 @@ En el juego de Generala, Mateo y yo utilizamos varias estructuras de datos y fun
 3. **Cálculo de Puntuaciones**: Cada combinación tiene su lógica específica para calcular los puntos.
 4. **Actualización y Comparación de Puntuaciones**: Al finalizar el juego, se comparan las puntuaciones totales de ambos jugadores para determinar el ganador.
 
-Estructura del Proyecto
+## Estructura del Proyecto
 Para este proyecto de Generala, organizamos nuestro código en varios archivos diferentes: generala.h, generala.c, main.c, y readme.md.
 1. Archivo generala.h
 Propósito: Este archivo se conoce como un archivo de encabezado (header file).
