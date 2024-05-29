@@ -38,9 +38,73 @@ Estas estructuras de datos nos permitieron mantener un seguimiento eficiente del
 
 ### Resumen de la lógica utilizada para verificar el cumplimiento de las reglas del juego
 
-La lógica del juego se basa en varios componentes que garantizan el cumplimiento de las reglas:
+En el juego de Generala, Mateo y yo utilizamos varias estructuras de datos y funciones para asegurar que las reglas se cumplan correctamente.
 
-1. **Control de Turnos**: Cada jugador tiene 13 turnos en los que puede lanzar los dados hasta tres veces para intentar lograr la mejor combinación posible.
-2. **Selección de Combinaciones**: Después de cada lanzamiento, el jugador elige qué combinación usar para esa ronda, si es que no ha sido seleccionada previamente.
-3. **Cálculo de Puntuaciones**: Cada combinación tiene una lógica específica para calcular los puntos basados en los valores de los dados, implementada en funciones como `unos()`, `doses()`, `treses()`, etc.
-4. **Verificación de Combinaciones**: Antes de asignar puntos, se verifica si la combinación elegida ya ha sido utilizada por el jugador para asegurar que cada combinación se use solo una vez.
+#### Estructuras de Datos Clave
+
+- **`int dado[5]`**: Representa los valores de los cinco dados lanzados en cada turno.
+- **`int p1_puntuaciones[13]`, `int p2_puntuaciones[13]`**: Almacenan las puntuaciones para cada una de las trece combinaciones posibles por jugador.
+- **`int p1_combinaciones[13]`, `int p2_combinaciones[13]`**: Indican si una combinación ha sido ya utilizada por los jugadores (0 no usada, 1 usada).
+
+#### Funciones Principales
+
+1. **Inicio y Control del Juego**:
+   - **`juego_principal()`**: Gestiona el flujo principal del juego, alternando entre los jugadores y controlando el número de turnos.
+   - **`menu_juego()`**: Muestra el menú principal del juego y permite al usuario iniciar una nueva partida o salir.
+
+2. **Lanzamiento y Relanzamiento de Dados**:
+   - **`tirar_dado(int dado[], int tamano, int quien_juega)`**: Lanza los dados de forma aleatoria.
+   - **`relanzar(int dado[], int tamano, int combo_c[], int jugador, int ronda)`**: Permite al jugador relanzar dados seleccionados hasta dos veces.
+   - **`relanzar_compu(int dado[], int tamano, int combo_c[], int jugador, int ronda)`**: Permite a la computadora decidir si quiere relanzar dados.
+
+3. **Selección de Combinaciones y Puntuaciones**:
+   - **`elegir_combo(int dado[], int tamano, int combo_c[], int puntuaciones[], int jugador, int ronda)`**: Permite al jugador seleccionar una combinación de puntuación y actualiza la puntuación si la combinación no ha sido utilizada previamente.
+   - **`imprimir_combos(int combo_c[])`**: Muestra las combinaciones disponibles y marca las que ya se han utilizado.
+
+4. **Cálculo y Verificación de Combinaciones**:
+   - **Combinaciones Simples**:
+     - **`unos(int dado[], int combo_c[], int puntos[])`**
+     - **`doses(int dado[], int combo_c[], int puntos[])`**
+     - **`treses(int dado[], int combo_c[], int puntos[])`**
+     - **`cuatros(int dado[], int combo_c[], int puntos[])`**
+     - **`cincos(int dado[], int combo_c[], int puntos[])`**
+     - **`seises(int dado[], int combo_c[], int puntos[])`**
+   - **Combinaciones Complejas**:
+     - **`trio(int dado[], int combo_c[], int puntos[])`**
+     - **`poker(int dado[], int combo_c[], int puntos[])`**
+     - **`full(int dado[], int combo_c[], int puntos[])`**
+     - **`escalera_corta(int dado[], int combo_c[], int puntos[])`**
+     - **`escalera_larga(int dado[], int combo_c[], int puntos[])`**
+     - **`generala(int dado[], int combo_c[], int puntos[])`**
+     - **`azar(int dado[], int combo_c[], int puntos[])`**
+
+5. **Impresión y Finalización del Juego**:
+   - **`imprimir_dado(int dado[], int tamano, int combos_c[])`**: Imprime el estado actual de los dados.
+   - **`imprimir_puntuacion(int puntuaciones[], int jugador)`**: Imprime la puntuación acumulada del jugador.
+   - **`finalizar_juego(int p1_puntos[], int p2_puntos[])`**: Finaliza el juego y muestra el ganador basado en la puntuación total.
+   - **`finalizar_juego_compu(int puntosJug1, int puntosJug2)`**: Finaliza el juego cuando uno de los jugadores es la computadora y muestra el ganador.
+
+### Resumen de la Lógica de Verificación
+
+1. **Control de Turnos**: Cada jugador tiene 13 turnos en los que puede lanzar los dados hasta tres veces.
+2. **Selección de Combinaciones**: Los jugadores eligen combinaciones para puntuar, verificando si ya han sido usadas.
+3. **Cálculo de Puntuaciones**: Cada combinación tiene su lógica específica para calcular los puntos.
+4. **Actualización y Comparación de Puntuaciones**: Al finalizar el juego, se comparan las puntuaciones totales de ambos jugadores para determinar el ganador.
+
+Estructura del Proyecto
+Para este proyecto de Generala, organizamos nuestro código en varios archivos diferentes: generala.h, generala.c, main.c, y readme.md.
+1. Archivo generala.h
+Propósito: Este archivo se conoce como un archivo de encabezado (header file).
+Contenido: Contiene las declaraciones de las funciones y las definiciones de las constantes que utilizamos en el programa.
+
+2. Archivo generala.c
+Propósito: Este archivo contiene la implementación de las funciones declaradas en generala.h.
+Contenido: Aquí se define la lógica detallada del juego, incluyendo cómo se lanzan los dados, cómo se imprimen los resultados, cómo se gestionan los relanzamientos y cómo se calculan y actualizan las puntuaciones.
+
+3. Archivo main.c
+Propósito: Este archivo contiene la función main(), que es el punto de entrada del programa.
+
+4. Archivo readme.md
+Propósito: Este archivo de documentación proporciona una descripción general del proyecto, instrucciones de compilación y ejecución, y cualquier otra información relevante.
+
+Este proyecto no solo permitió poner en práctica conceptos de programación en C, sino también desarrollar habilidades en planificación, resolución de problemas y trabajo en equipo con mi compa la maquina de programacion Mateo Rios y yo Sebastian Rojas un humilde debugeador, muchas gracias.
