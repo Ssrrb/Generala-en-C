@@ -5,7 +5,7 @@ El programa está diseñado para monitorear meticulosamente qué combinaciones h
 si el jugador ha logrado la combinación requerida y asigna puntos basados en estos logros.
 ### Descripción de la manera en que se planeó inicialmente el desarrollo del programa
 
-Inicialmente, planeamos el desarrollo del programa de Generala en varias etapas clave. Primero, definimos los objetivos del juego y cómo queríamos que los jugadores interactuaran con él a través de una interfaz de consola. Establecimos que usaríamos arrays para representar los dados y las puntuaciones de cada jugador, así como para controlar las combinaciones utilizadas.
+Inicialmente con Mateo, planeamos el desarrollo del programa de Generala en varias etapas clave. Primero, definimos los objetivos del juego y cómo queríamos que los jugadores interactuaran con él a través de una interfaz de consola. Establecimos que usaríamos arrays para representar los dados y las puntuaciones de cada jugador, así como para controlar las combinaciones utilizadas.
 
 Identificamos las funciones principales necesarias para el funcionamiento del juego:
 - `juego_principal()`: Gestiona el flujo del juego, alternando entre los jugadores y controlando el número de turnos.
@@ -14,14 +14,13 @@ Identificamos las funciones principales necesarias para el funcionamiento del ju
 - `elegir_combo()`: Permite al jugador elegir una combinación de puntuación y verifica si ya ha sido utilizada.
 - `imprimir_puntuacion()`, `finalizar_juego()`: Presentan las puntuaciones y determinan el ganador del juego.
 
-Cada función fue diseñada para cumplir un propósito específico dentro del flujo del juego, asegurando modularidad y claridad en la implementación.
 
 ### Informe final de cómo efectivamente se realizó el desarrollo del programa
 
-El desarrollo del programa se llevó a cabo siguiendo el plan inicial con algunos ajustes necesarios para resolver problemas encontrados durante el proceso. Implementamos todas las funciones planificadas y ajustamos la lógica de control de flujo para garantizar la correcta alternancia entre los jugadores y la validación de las entradas del usuario.
+El desarrollo del programa se llevó a cabo siguiendo el plan inicial con algunos ajustes necesarios a traves de incontables horas de trabajo, investigacion de la documentacion, inspiracion en videos de youtube correcciones de la inteligencia artificial y muchos commits fallidos en nuestro repositorio. Escribimos como queriamos que fuese nuestro codigo en papel y luego implementamos todas las funciones planificadas y fuimos ajustando la logica probando y probando.
 
 #### Dificultades encontradas:
-1. **Gestión de la Consola**: Limpiar la consola y pausar el juego entre turnos resultó ser un desafío debido a diferencias en los sistemas operativos.
+1. **Gestión de la Consola**: Limpiar la consola y pausar el juego entre turnos resultó ser un desafío 
 2. **Validación de Entradas**: Asegurar que las entradas del usuario fueran robustas y manejar errores de entrada incorrecta.
 3. **Lógica de Puntuación**: Implementar correctamente las reglas para cada combinación de puntuación y verificar si una combinación ya ha sido usada.
 
