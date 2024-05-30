@@ -76,7 +76,6 @@ En el juego de Generala, Mateo y yo utilizamos varias estructuras de datos y fun
      - **`escalera_corta(int dado[], int combo_c[], int puntos[])`**
      - **`escalera_larga(int dado[], int combo_c[], int puntos[])`**
      - **`generala(int dado[], int combo_c[], int puntos[])`**
-     - **`azar(int dado[], int combo_c[], int puntos[])`**
 
 5. **Impresión y Finalización del Juego**:
    - **`imprimir_dado(int dado[], int tamano, int combos_c[])`**: Imprime el estado actual de los dados.
