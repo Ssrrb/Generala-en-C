@@ -36,6 +36,9 @@ Para resolver el problema y manejar la lógica del juego de Generala, utilizamos
 
 Estas estructuras de datos nos permitieron mantener un seguimiento eficiente del estado del juego, las puntuaciones de cada jugador y las combinaciones utilizadas, facilitando la implementación de la lógica del juego y la verificación del cumplimiento de las reglas.
 
+-**Implementación de la Jugada Automática de la Máquina**
+La solucion de este problema luego de mucha prueba y error, fue la creacion de una matriz con jugadas precargadas para jugar de manera automatica contra la computadora.
+
 ### Resumen de la lógica utilizada para verificar el cumplimiento de las reglas del juego
 
 En el juego de Generala, Mateo y yo utilizamos varias estructuras de datos y funciones para asegurar que las reglas se cumplan correctamente.
